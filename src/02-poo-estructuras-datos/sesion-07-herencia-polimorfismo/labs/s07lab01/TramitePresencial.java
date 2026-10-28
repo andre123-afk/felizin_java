@@ -6,7 +6,9 @@ public class TramitePresencial extends Tramite {
     }
 
     // TODO 3: Agregar @Override y devolver la descripcion usando getCodigo().
+    // el campo codigo es privado en la base asi que lo leo con el getter
+    @Override
     public String descripcion() {
-        return ""; // Retorno provisional: reemplazar.
+        return "Tramite presencial: " + getCodigo();
     }
 }
