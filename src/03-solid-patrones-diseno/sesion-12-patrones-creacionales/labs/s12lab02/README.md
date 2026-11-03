@@ -13,19 +13,21 @@ Una reserva exige huésped y fecha; desayuno, estacionamiento y lateCheckout son
 1. Lee Reserva: sus campos son finales y no ofrece setters. Después identifica en ReservaBuilder los datos temporales, los métodos que retornan this y la validación de build.
 2. Predice qué ocurre al construir la primera reserva y reutilizar el builder con lateCheckout true. Ejecuta el Main y observa que la primera no se modifica.
 3. Sigue en Debug cada build: se crea un producto nuevo. Señala la diferencia entre configurar el builder y cambiar una reserva ya construida.
-4. En una copia del Main cambia el huésped a `Luis` y la fecha a `LocalDate.of(2026, 3, 5)`. Ambas reservas deben reflejar esos datos y conservar sus distintas opciones de lateCheckout.
-5. En otra ejecución, crea `new ReservaBuilder().huesped("Ana").build()` dentro del try ya preparado: debe indicar `La fecha es obligatoria`. No cambies la lógica del builder. Explica qué estado incompleto se impide publicar.
+4. El Main usa el huésped `Luis` y la fecha `LocalDate.of(2026, 3, 5)`. Ambas reservas reflejan esos datos y conservan sus distintas opciones de lateCheckout.
+5. El bloque de validación crea `new ReservaBuilder().huesped("Ana").build()`: debe indicar `La fecha es obligatoria`. No cambies la lógica del builder. Esa validación impide publicar una reserva sin fecha.
 
 La fecha fija se construye con año, mes y día; no se consulta el reloj. Constructor con pocos parámetros puede ser más simple para una reserva sin muchas opciones: menciona ese costo en una frase.
 
 ## Salida inicial esperada
 
 ```text
-Ana | 2026-02-10 | desayuno=true | estacionamiento=true | lateCheckout=false
-Ana | 2026-02-10 | desayuno=true | estacionamiento=true | lateCheckout=true
+Luis | 2026-03-05 | desayuno=true | estacionamiento=true | lateCheckout=false
+Luis | 2026-03-05 | desayuno=true | estacionamiento=true | lateCheckout=true
 Primera conserva lateCheckout: false
 Objetos distintos: true
-Reserva rechazada: El huesped es obligatorio
+Reserva rechazada: La fecha es obligatoria
 ```
 
-Guarda dos comprobaciones cortas con entrada, esperado y obtenido, y responde la pregunta conceptual. No debes construir otro patrón ni dibujar un UML completo en este tiempo. Completa lo pendiente para la siguiente clase según indique el docente.
+**Comprobaciones y respuesta:** (1) Reserva de Luis con lateCheckout desactivado: la primera conserva `false`, como se esperaba. (2) La segunda reserva activa lateCheckout y es un objeto distinto; la reserva incompleta sin fecha se rechaza. El builder reúne opciones de forma legible y valida antes de crear el objeto, aunque un constructor simple sería más ligero si hubiera pocos campos.
+
+No debes construir otro patrón ni dibujar un UML completo en este tiempo. Completa lo pendiente para la siguiente clase según indique el docente.

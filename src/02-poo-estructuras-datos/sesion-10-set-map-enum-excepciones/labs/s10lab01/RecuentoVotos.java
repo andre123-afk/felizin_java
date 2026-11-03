@@ -14,7 +14,7 @@ public class RecuentoVotos {
     }
 
     public boolean votar(String entrada) {
-        if (entrada == null) {
+     if (entrada == null) {
             return false;
         }
         String opcion = entrada.strip().toUpperCase(Locale.ROOT);

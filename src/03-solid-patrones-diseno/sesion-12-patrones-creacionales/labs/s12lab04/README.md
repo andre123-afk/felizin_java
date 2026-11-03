@@ -11,9 +11,9 @@ Lee [ContadorMetricas.java](ContadorMetricas.java) → [ProcesoLaboratorio.java]
 Dos procesos lógicos registran eventos en un contador compartido. No son procesos del sistema operativo ni hilos: el ejemplo ejecuta todo secuencialmente en una sola JVM.
 
 1. Lee constructor privado, instancia static final y obtenerInstancia. Predice si primera y segunda son dos objetos o dos referencias.
-2. Ejecuta el Main con Run en una **JVM nueva**. Proceso A registra 2 eventos y B registra 1; ambos observan total 3.
+2. Ejecuta el Main con Run en una **JVM nueva**. Proceso A registra 1 evento y B registra 1; ambos observan total 2.
 3. Identifica cómo ProcesoLaboratorio recibe el contador por constructor. No obtiene el global por su cuenta ni crea otro contador.
-4. En una copia del Main cambia las cantidades a 1 y 1. Vuelve a ejecutar desde cero: total inicial 0 y total final 2 desde ambas referencias. No añadas un reset público ni invoques dos veces Main en la misma JVM para esta prueba.
+4. El Main registra 1 evento desde cada proceso. Ejecuta desde cero: total inicial 0 y total final 2 desde ambas referencias. No añadas un reset público ni invoques dos veces Main en la misma JVM para esta prueba.
 5. Explica en una frase qué dificultaría el estado global en pruebas y cuándo preferirías un contador normal entregado por ejecución.
 
 No se implementa concurrencia. La creación de la instancia está inicializada con seguridad, pero total++ **no promete seguridad con varios hilos**. La unicidad no abarca otras JVM o máquinas.
@@ -23,8 +23,10 @@ No se implementa concurrencia. La creación de la instancia está inicializada c
 ```text
 Misma instancia: true
 Total inicial: 0
-Total desde A: 3
-Total desde B: 3
+Total desde A: 2
+Total desde B: 2
 ```
 
-Guarda dos comprobaciones cortas con entrada, esperado y obtenido, y responde la pregunta conceptual. No debes construir otro patrón ni dibujar un UML completo en este tiempo. Completa lo pendiente para la siguiente clase según indique el docente.
+**Comprobaciones y respuesta:** (1) Dos llamadas a `obtenerInstancia()` comparadas con `==` devuelven `true`. (2) Un evento de cada proceso deja el total en `2`, visible desde ambas referencias. El estado global puede contaminar pruebas entre sí; un contador normal inyectado es preferible cuando cada ejecución necesita estado aislado.
+
+No debes construir otro patrón ni dibujar un UML completo en este tiempo. Completa lo pendiente para la siguiente clase según indique el docente.

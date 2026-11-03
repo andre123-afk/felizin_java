@@ -13,7 +13,7 @@ Dos gestores registran préstamos y producen comprobantes distintos. Uno indica 
 1. Lee ComprobantePrestamo y GestorPrestamo. Identifica el producto, el método protegido de creación y el flujo registrarPrestamo que lo utiliza.
 2. Lee los dos gestores y sus productos. Antes de ejecutar, predice qué comprobante crea cada subclase y qué título aparecerá.
 3. Ejecuta el Main. En Debug, entra desde registrarPrestamo a crearComprobante: observa qué implementación se selecciona sin cambiar el flujo del creador base.
-4. En una copia del Main cambia ambos títulos a `POO aplicada`. Deben aparecer `Retiro en mostrador: POO aplicada` y `Acceso en plataforma: POO aplicada`. No edites gestores ni productos.
+4. El Main usa el título `POO aplicada` para ambos gestores. Deben aparecer `Retiro en mostrador: POO aplicada` y `Acceso en plataforma: POO aplicada`. No es necesario editar gestores ni productos.
 5. Explica qué creador y producto añadirías para otra modalidad, sin implementarlos. ¿Por qué un único método estático que eligiera por un String no demostraría este mismo patrón?
 
 El título nulo o en blanco se rechaza con IllegalArgumentException. Los escenarios de la actividad usan títulos válidos; no necesitas añadir una gestión nueva de excepciones.
@@ -21,8 +21,10 @@ El título nulo o en blanco se rechaza con IllegalArgumentException. Los escenar
 ## Salida inicial esperada
 
 ```text
-Retiro en mostrador: Java inicial
-Acceso en plataforma: Java inicial
+Retiro en mostrador: POO aplicada
+Acceso en plataforma: POO aplicada
 ```
 
-Guarda dos comprobaciones cortas con entrada, esperado y obtenido, y responde la pregunta conceptual. No debes construir otro patrón ni dibujar un UML completo en este tiempo. Completa lo pendiente para la siguiente clase según indique el docente.
+**Comprobaciones y respuesta:** (1) Gestor físico con título `POO aplicada`: se obtuvo `Retiro en mostrador: POO aplicada`, como se esperaba. (2) Gestor digital con el mismo título: se obtuvo `Acceso en plataforma: POO aplicada`, como se esperaba. Para otra modalidad se agregaría un creador concreto y su comprobante; un método estático con selector central no demostraría la creación redefinida por subclases que caracteriza este Factory Method.
+
+No debes construir otro patrón ni dibujar un UML completo en este tiempo. Completa lo pendiente para la siguiente clase según indique el docente.
